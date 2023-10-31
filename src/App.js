@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import logo from "./img/cronometro.svg";
+import Boton from "./components/Boton";
+import Contador from "./components/Contador";
+import { useState } from "react";
 function App() {
+  const [numero, setNumero] = useState(0);
+
+  const manejarClick = () => {
+    setNumero(numero + 1);
+  };
+
+  const reiniciarContador = () => {
+    setNumero(0);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="cronometro-logo-contenedor">
+        <img className="cronometro-logo" src={logo} />
+      </div>
+      <div className="contenedor-principal">
+        <Contador numero={numero} />
+        <Boton texto="Click" botonClick={true} manejarClick={manejarClick} />
+        <Boton
+          texto="Reiniciar"
+          botonClick={false}
+          manejarClick={reiniciarContador}
+        />
+      </div>
     </div>
   );
 }
